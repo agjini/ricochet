@@ -6,6 +6,13 @@ const host = process.env.NODE_ENV === "production" ? "mongo" : "localhost";
 const user = encodeURIComponent(process.env.NODE_ENV === "production" ? process.env.MONGO_USER! : "mongoadmin");
 const password = encodeURIComponent(process.env.NODE_ENV === "production" ? process.env.MONGO_PASSWORD! : "secret");
 
+function getDatabase(): string {
+  if (!process.env.MONGO_DB) {
+    throw new Error("process.env.MONGO_DB must be defined to use mongo");
+  }
+  return process.env.MONGO_DB;
+}
+
 export const Url = `mongodb://${user}:${password}@${host}:27017`;
 
 interface Sequence extends Entity {
@@ -21,7 +28,7 @@ export class Mongo {
       try {
         const mongo = await MongoClient.connect(Url);
 
-        this.db = mongo.db("lmdc");
+        this.db = mongo.db(getDatabase());
       } catch (err) {
         console.error(`Mongo Db connection failed: ${err}`);
       }

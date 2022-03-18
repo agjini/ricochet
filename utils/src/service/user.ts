@@ -14,7 +14,12 @@ import {
 import { UploadService } from "../api";
 import { Mongo } from "./mongo";
 
-export const Secret = process.env.SECRET || "dsfsoiuoiiphf_è_izoookl !!:pibjaazzh";
+function getSecret(): string {
+  if (!process.env.SECRET) {
+    throw new Error("process.env.SECRET must be defined to use UserServiceImpl");
+  }
+  return process.env.SECRET;
+}
 
 export class UserServiceImpl implements UserService {
 
@@ -27,7 +32,7 @@ export class UserServiceImpl implements UserService {
     if (user) {
       if (await bcrypt.compare(inPassword, user.password)) {
         const { password, ...partialUser } = user;
-        const token = jwt.sign(partialUser, Secret, {
+        const token = jwt.sign(partialUser, getSecret(), {
           expiresIn: "10h"
         });
         return { token, user: partialUser };
@@ -45,10 +50,10 @@ export class UserServiceImpl implements UserService {
         if (t.startsWith("Bearer")) {
           t = t.substring(6).trim();
         }
-        const partialUser = jwt.verify(t, Secret) as PartialUser;
+        const partialUser = jwt.verify(t, getSecret()) as PartialUser;
         const newToken = jwt.sign(
           { _id: partialUser._id, email: partialUser.email, name: partialUser.name, photo: partialUser.photo, role: partialUser.role },
-          Secret,
+          getSecret(),
           {
             expiresIn: "10h"
           }
