@@ -1,6 +1,6 @@
 {
   "name": "@ricochet/utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utilities types and function for building websites compatible with node.js",
   "main": "dist/index.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.4.0",
     "multer": "^1.4.4",
-    "next": "^12.1.0",
+    "next": "^12.0.0",
     "nodemailer": "^6.7.2",
     "sharp": "^0.30.1"
   },
