@@ -1,5 +1,5 @@
 import React from "react";
-import Html from "./Html";
+import { Html } from "./Html";
 
 interface HeadingProps {
   className?: string;

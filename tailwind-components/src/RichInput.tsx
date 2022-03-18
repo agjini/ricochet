@@ -5,7 +5,7 @@ import {
   Indication,
   IndicationMessage,
 } from "./Indication";
-import "react-quill/dist/quill.snow.css";
+// import "react-quill/dist/quill.snow.css";
 import { Label } from "./Label";
 
 export const onServerSide = () => typeof window === "undefined";

@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React from "react";
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { icon } from "leaflet";
 
