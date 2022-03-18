@@ -3,8 +3,9 @@
   "version": "0.0.7",
   "description": "Utilities types and function for building websites compatible with node.js",
   "scripts": {
-    "build": "rollup -c",
-    "start": "rollup -c -w"
+    "build": "rollup -c && cp package.json dist",
+    "start": "rollup -c -w",
+    "pub": "yarn publish --access public ./dist"
   },
   "files": [
     "dist"
