@@ -1,15 +1,11 @@
 {
   "name": "@ricochet/utils",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Utilities types and function for building websites compatible with node.js",
-  "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w"
   },
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/agjini/ricochet.git"
