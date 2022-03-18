@@ -1,15 +1,12 @@
 {
   "name": "@ricochet/utils",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "description": "Utilities types and function for building websites compatible with node.js",
   "scripts": {
-    "build": "rollup -c && cp package.json dist",
+    "build": "rollup -c",
     "start": "rollup -c -w",
     "pub": "yarn publish --access public ./dist"
   },
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/agjini/ricochet.git"
