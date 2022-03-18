@@ -1,3 +1,4 @@
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import typescript from "rollup-plugin-typescript2";
 
 export default [
@@ -8,7 +9,10 @@ export default [
             format: 'umd',
             name: 'api'
         },
-        plugins: [typescript()],
+        plugins: [
+            peerDepsExternal(),
+            typescript()
+        ],
         external: []
     },
     {
@@ -18,7 +22,10 @@ export default [
             format: 'umd',
             name: 'client'
         },
-        plugins: [typescript()],
+        plugins: [
+            peerDepsExternal(),
+            typescript()
+        ],
         external: []
     },
     {
@@ -27,7 +34,10 @@ export default [
             file: 'dist/service.js',
             format: 'cjs'
         },
-        plugins: [typescript()],
-        external: ["multer", "mongodb", "nodemailer", "bson", "bcrypt", "jsonwebtoken"]
+        plugins: [
+            peerDepsExternal(),
+            typescript()
+        ],
+        external: ["multer", "mongodb", "nodemailer", "bson", "bcrypt", "jsonwebtoken", "crypto", "next"]
     }
 ];

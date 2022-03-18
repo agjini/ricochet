@@ -1,5 +1,4 @@
 import { Filter } from "mongodb";
-import { NextApiRequest } from "next";
 
 export interface Entity {
     readonly _id?: string;
@@ -31,16 +30,6 @@ export interface ListOptions<T> {
 export interface ListResult<T> {
     readonly results: T[];
     readonly total: number;
-}
-
-export function parseListOptions<T>(req: NextApiRequest): ListOptions<T> {
-    return {
-        filter: req.query.filter ? JSON.parse(req.query.filter as string) : undefined,
-        skip: req.query.skip ? parseInt(req.query.skip as string, 10) : undefined,
-        limit: req.query.limit ? parseInt(req.query.limit as string, 10) : undefined,
-        search: req.query.search as string,
-        sort: req.query.sort ? JSON.parse(req.query.sort as string) : undefined
-    };
 }
 
 export function toSearchQuery<T>(search?: string, searchFields?: Array<keyof T>): Filter<T> {

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import multer from "multer";
-import {ResourceNotFoundError, UnauthorizedError, ValidationError, UploadFile } from "../api";
+import { ResourceNotFoundError, UnauthorizedError, ValidationError, UploadFile, ListOptions } from "../api";
 
 export function onError<Req, Res extends NextApiResponse>(err: any, _: Req, res: Res) {
   if (err instanceof ResourceNotFoundError) {
@@ -14,7 +14,7 @@ export function onError<Req, Res extends NextApiResponse>(err: any, _: Req, res:
     res.status(500).send(err.message || "");
   }
 }
-//
+
 // export async function checkAuth(req: NextApiRequest): Promise<AuthUser> {
 //   const a = req.headers.authorization;
 //   return userService.isValid(a);
@@ -26,6 +26,16 @@ export interface RequestWithFile extends NextApiRequest {
 
 export interface RequestWithFiles extends NextApiRequest {
   files: UploadFile[];
+}
+
+export function parseListOptions<T>(req: NextApiRequest): ListOptions<T> {
+  return {
+    filter: req.query.filter ? JSON.parse(req.query.filter as string) : undefined,
+    skip: req.query.skip ? parseInt(req.query.skip as string, 10) : undefined,
+    limit: req.query.limit ? parseInt(req.query.limit as string, 10) : undefined,
+    search: req.query.search as string,
+    sort: req.query.sort ? JSON.parse(req.query.sort as string) : undefined
+  };
 }
 
 export const upload = multer({
